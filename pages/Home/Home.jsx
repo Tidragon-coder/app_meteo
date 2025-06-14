@@ -8,6 +8,7 @@ import { getCurrentPositionAsync, requestForegroundPermissionsAsync } from "expo
 import { MeteoAPI } from '../../api/meteo';
 
 import { MeteoBasic } from '../../components/MeteoBasic/MeteoBasic';
+import { getWeatherInterpretation } from '../../services/meteo-service';
 
 export function Home({}) {
     const [coords, setCoords] = useState();
@@ -49,7 +50,10 @@ export function Home({}) {
     return currentWeather ?(
     <>
     <View style={s.meteo_basic}>  
-      <MeteoBasic temperature={Math.round(currentWeather?.temperature)}  city="Todo"/>
+      <MeteoBasic temperature={Math.round(currentWeather?.temperature)}  
+      city="Todo"
+      interpretation={getWeatherInterpretation(currentWeather?.weathercode)}
+      />
      </View>
     <View style={s.meteo_searchbar_container}>
       <Txt ></Txt>

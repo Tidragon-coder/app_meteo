@@ -7,11 +7,12 @@ const s = StyleSheet.create({
     weather_label: {
         alignSelf: 'flex-end ', 
         transform: [{ rotate: '-90deg' }],
+        fontSize: 20,
     },
     image: {
-        height: 90,
-        width: 90,
-        backgroundColor: 'white',
+        height: 100,
+        width: 100,
+        resizeMode: 'contain',
     },
     temperature_box: {
         alignItems: 'baseline',
@@ -19,7 +20,7 @@ const s = StyleSheet.create({
         justifyContent: 'space-between',
     },
     temperature:{
-        fontSize: 150,
+        fontSize: 100,
     }
 });
 

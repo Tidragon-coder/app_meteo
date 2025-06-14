@@ -3,7 +3,7 @@ import { Txt } from "../txt/txt";
 
 import { s } from "./MeteoBasic.style";
 
-export function MeteoBasic({temperature, city }) {
+export function MeteoBasic({temperature, city, interpretation }) {
     return(
         <>
             <View style={s.clock}>
@@ -12,11 +12,11 @@ export function MeteoBasic({temperature, city }) {
 
             <Txt>{city}</Txt>
 
-            <Txt style={s.weather_label}>Label</Txt>
+            <Txt style={s.weather_label}> {interpretation.label}</Txt>
 
             <View style={s.temperature_box}>
                 <Txt style={s.temperature}>{temperature}°</Txt>
-                <Image style={s.image}/>
+                <Image style={s.image} source={interpretation.image}/>
             </View>
         </>
     )
