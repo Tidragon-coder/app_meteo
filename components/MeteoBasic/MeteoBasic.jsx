@@ -3,11 +3,15 @@ import { Txt } from "../txt/txt";
 
 import { s } from "./MeteoBasic.style";
 
+import { Clock } from "../Clock/Clock";
+
 export function MeteoBasic({temperature, city, interpretation }) {
     return(
         <>
             <View style={s.clock}>
-                <Txt>Clock</Txt>
+                <Txt>
+                    <Clock/>
+                </Txt>
             </View>
 
             <Txt>{city}</Txt>
