@@ -10,11 +10,12 @@ const s = StyleSheet.create({
         fontSize: 20,
     },
     image: {
-        height: 100,
-        width: 100,
+        height: 90,
+        width: 90,
         resizeMode: 'contain',
     },
     temperature_box: {
+        marginTop: 30,
         alignItems: 'baseline',
         flexDirection: 'row',
         justifyContent: 'space-between',

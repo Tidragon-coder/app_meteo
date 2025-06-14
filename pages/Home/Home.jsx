@@ -2,12 +2,13 @@ import { useEffect, useState } from 'react';
 import { View } from 'react-native';
 import { s } from './Home.style';
 
+import { MeteoAdvanced } from '../../components/MeteoAdvanced/MeteoAdvanced';
+import { MeteoBasic } from '../../components/MeteoBasic/MeteoBasic';
 import { Txt } from '../../components/txt/txt';
 
 import { getCurrentPositionAsync, requestForegroundPermissionsAsync } from "expo-location";
 import { MeteoAPI } from '../../api/meteo';
 
-import { MeteoBasic } from '../../components/MeteoBasic/MeteoBasic';
 import { getWeatherInterpretation } from '../../services/meteo-service';
 
 export function Home({}) {
@@ -66,7 +67,9 @@ export function Home({}) {
     <View style={s.meteo_searchbar_container}>
       <Txt ></Txt>
     </View>
-    <View style={s.meteo_advanced}></View>
+    <View style={s.meteo_advanced}>
+      <MeteoAdvanced wind={currentWeather.windspeed} dusk={weather.daily.sunrise[0].split('T')[1]} dawn={weather.daily.sunset[0].split('T')[1]}/>
+    </View>
     </> 
 ) : null;
 }
