@@ -1,18 +1,37 @@
 import { Container } from "../../components/Container/Container";
 import { Txt } from "../../components/txt/txt";
-import { s } from "./Forecast.style.js";
 
-import { useRoute } from "@react-navigation/native";
+import { TouchableOpacity, View } from "react-native";
+
+import { useNavigation, useRoute } from "@react-navigation/native";
+
+import { s } from "./Forecast.style";
 
 
-export function Forecast({}) {
+export function Forecast({ }) {
 
     const { params } = useRoute()
 
-console.log("Forecast params", params)
+    const nav = useNavigation();
+
+const backButton = (
+    <TouchableOpacity style={s.back_btn} onPress={() => nav.goBack()}>
+        <Txt > {'<'} </Txt>
+    </TouchableOpacity>
+)
+
+    const header = (
+        <View style={s.header}>
+            {backButton}
+            <View style={s.header_texts}>
+                <Txt>{params.city}</Txt>
+                <Txt style={s.subtitle}>Prévision sur 7 jours</Txt>
+            </View>
+        </View>
+ )
     return (
         <Container>
-            <Txt style={s.title}>Prévisions</Txt>
+            {header}
         </Container>
     )
 }
