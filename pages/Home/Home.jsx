@@ -6,7 +6,7 @@ import { s } from './Home.style';
 import { Container } from '../../components/Container/Container';
 import { MeteoAdvanced } from '../../components/MeteoAdvanced/MeteoAdvanced';
 import { MeteoBasic } from '../../components/MeteoBasic/MeteoBasic';
-import { Txt } from '../../components/txt/txt';
+import { Searchbar } from '../../components/Searchbar/Searchbar';
 
 import { getCurrentPositionAsync, requestForegroundPermissionsAsync } from "expo-location";
 import { MeteoAPI } from '../../api/meteo';
@@ -75,7 +75,7 @@ export function Home({}) {
       />
      </View>
     <View style={s.meteo_searchbar_container}>
-      <Txt ></Txt>
+      <Searchbar onSubmit={getUserCoords} />
     </View>
     <View style={s.meteo_advanced}>
       <MeteoAdvanced wind={currentWeather.windspeed} dusk={weather.daily.sunrise[0].split('T')[1]} dawn={weather.daily.sunset[0].split('T')[1]} />
