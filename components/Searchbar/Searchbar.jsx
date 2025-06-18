@@ -3,6 +3,6 @@ import { s } from './Searchbar.style';
 
 export function Searchbar({onSubmit}) {
     return <>
-        <TextInput onSubmitEditing={onSubmit} style={s.input} placeholder="Rechercher une ville..."/>
+        <TextInput onSubmitEditing={(e) => onSubmit(e.nativeEvent.text)} style={s.input} placeholder="Rechercher une ville..."/>
     </>
 }
