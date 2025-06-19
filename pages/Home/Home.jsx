@@ -17,7 +17,7 @@ import { getWeatherInterpretation } from '../../services/meteo-service';
 export function Home({ }) {
   const [coords, setCoords] = useState();
   const [weather, setWeather] = useState();
-  const [city, setCity] = useState();
+  const [city, setCity] = useState("Chargement...");
   const nav = useNavigation();
   const currentWeather = weather?.current_weather;
 
@@ -53,9 +53,17 @@ export function Home({ }) {
   }
 
   async function fetchCity(coordinates) {
-    const cityResponse =
-      await MeteoAPI.fetchCityFromCoords(coordinates);
-    setCity(cityResponse);
+    try {
+      const cityResponse = await MeteoAPI.fetchCityFromCoords(coordinates);
+      if (cityResponse) {
+        setCity(cityResponse);
+      } else {
+        setCity("Ville inconnue");
+      }
+    } catch (error) {
+      console.error("Erreur lors de la récupération de la ville:", error);
+      setCity("Ville inconnue");
+    }
   }
 
   async function fetchCoordsByCity(city) {
@@ -77,7 +85,7 @@ export function Home({ }) {
 
   return currentWeather ? (
     <Container>
-      <>
+      <View style={s.content}>
         <View style={s.meteo_basic}>
           <MeteoBasic temperature={Math.round(currentWeather?.temperature)}
             city={city}
@@ -91,7 +99,7 @@ export function Home({ }) {
         <View style={s.meteo_advanced}>
           <MeteoAdvanced wind={currentWeather.windspeed} dusk={weather.daily.sunrise[0].split('T')[1]} dawn={weather.daily.sunset[0].split('T')[1]} />
         </View>
-      </>
+      </View>
     </Container>
   ) : null;
 }

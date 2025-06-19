@@ -2,7 +2,7 @@ import { StyleSheet } from "react-native";
 
 const s = StyleSheet.create({
     container: {
-        flex: 1,
+        minHeight: 100,
         borderRadius: 15,
         borderColor: 'white',
         borderWidth: 2,
@@ -10,7 +10,7 @@ const s = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-evenly',
         alignItems: 'center',
-        padding: 10,
+        padding: 20,
     },
 
 })

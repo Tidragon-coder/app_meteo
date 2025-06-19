@@ -27,6 +27,13 @@ const WEATHER_INTERPRETATION = [
 ];
 
 export function getWeatherInterpretation(code) {
-    return WEATHER_INTERPRETATION.find((interpretation) => 
-        interpretation.code.includes(code));
+    return (
+        WEATHER_INTERPRETATION.find((interpretation) => 
+            interpretation.code.includes(code)) || 
+        {
+            code: [-1],
+            image: require("../assets/images/partly-cloudy.png"),
+            label: "Indéfini"
+        }
+    );
 }

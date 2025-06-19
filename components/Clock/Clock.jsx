@@ -16,9 +16,5 @@ export function Clock() {
 
     }, []);
 
-    return (
-        <>
-            <Txt style={s.time}>{time}</Txt>
-        </>
-    )
+    return <Txt style={s.time}>{time}</Txt>
 }

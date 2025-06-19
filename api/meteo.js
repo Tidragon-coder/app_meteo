@@ -11,27 +11,48 @@ export class MeteoAPI {
     }
 
     static async fetchCityFromCoords(coords) {
-        const { address: { city, village } }
-            = (
-                await axios.get(
-                    `https://nominatim.openstreetmap.org/reverse?format=json&lat=${coords.lat}&lon=${coords.lng}`
-                )
-            ).data;
-        return city || village || "Unknown City";
+        try {
+            const response = await axios.get(
+                `https://nominatim.openstreetmap.org/reverse?format=json&lat=${coords.lat}&lon=${coords.lng}`,
+                {
+                    headers: {
+                        'User-Agent': 'MeteoApp/1.0'
+                    }
+                }
+            );
+            const data = response.data;
+            
+            if (data && data.address) {
+                const { city, village, town, municipality } = data.address;
+                return city || village || town || municipality || "Ville inconnue";
+            }
+            
+            return "Ville inconnue";
+        } catch (error) {
+            console.error("Erreur lors de la récupération de la ville:", error);
+            return "Ville inconnue";
+        }
     }
 
     static async fetchCityCoordsFromCity(city) {
         try {
-            const { latitude: lat, longitude: lng } = (
-                await axios.get(
-                    `https://geocoding-api.open-meteo.com/v1/search?name=${city}&count=1&language=fr&count=1`
-                )
-            ).data.results[0];
-
-            return { lat, lng }
+            const response = await axios.get(
+                `https://geocoding-api.open-meteo.com/v1/search?name=${city}&count=1&language=fr`,
+                {
+                    headers: {
+                        'User-Agent': 'MeteoApp/1.0'
+                    }
+                }
+            );
+            
+            if (response.data && response.data.results && response.data.results.length > 0) {
+                const { latitude: lat, longitude: lng } = response.data.results[0];
+                return { lat, lng };
+            }
+            throw new Error("Ville non trouvée");
         }
-        catch (e) {
-            console.error("Error fetching coordinates for city:", error);
+        catch (error) {
+            console.error("Erreur lors de la recherche des coordonnées:", error);
             throw "Pas de coordonnées trouvées pour la recherche : " + city;
         }
     }
