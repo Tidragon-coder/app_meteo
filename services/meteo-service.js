@@ -1,18 +1,44 @@
 const WEATHER_INTERPRETATION = [
     {
-        code: [0],
+        code: [0, 1],
         image: require("../assets/images/sun.png"),
         label:"Ensoleillé",
     },
     {
-        code: [1, 2, 3, 45, 48],
-        image: require("../assets/images/clouds.png"),
-        label:"Nuageux",
+        code: [2],
+        image: require("../assets/images/partly-cloudy.png"),
+        label:"Partiel. Nuageux",
     },
     {
-        code: [51, 53, 55, 56, 57, 61, 63, 65, 66, 67, 80, 81, 82, 85, 86],
+        code: [3],
+        image: require("../assets/images/very-clouds.png"),
+        label:"très Nuageux",
+    },
+
+    {
+        code: [45],
+        image: require("../assets/images/Fog.png"),
+        label:"Brouillard",
+    },
+    {
+        code: [48],
+        image: require("../assets/images/Cold.png"),
+        label:"Givreux",
+    },
+    {
+        code: [51, 53, 55, 61, 63,66, 67, 80, 81, 82, 85, 86],
         image: require("../assets/images/rain.png"),
         label:"Pluvieux",
+    },
+    {
+        code: [65],
+        image: require("../assets/images/Very-rain.png"),
+        label:"Forte pluie",
+    },
+    {
+        code: [56, 57],
+        image: require("../assets/images/Very-rain.png"),
+        label:"Pluie verglasante",
     },
     {
         code: [71, 73, 75, 77],
@@ -20,9 +46,14 @@ const WEATHER_INTERPRETATION = [
         label:"Neigeux",
     },
     {
+        code: [95],
+        image: require("../assets/images/Partly.png"),
+        label:"Orageux",
+    },
+    {
         code: [96, 99],
         image: require("../assets/images/thunder.png"),
-        label:"Orageux",
+        label:"Orageux pluie/greles",
     },
 ];
 
