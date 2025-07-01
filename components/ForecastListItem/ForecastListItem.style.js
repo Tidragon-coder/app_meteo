@@ -6,23 +6,37 @@ const s = StyleSheet.create({
         justifyContent: 'space-between',
         alignItems: 'center',
         marginHorizontal: 20,
+        paddingVertical: 15,
+        borderBottomWidth: 1,
+        borderBottomColor: '#e6e6e6',
+    },
+    imageContainer: {
+        alignItems: 'center',
+        width: 80,
     },
     image: {
         width: 50,
         height: 50,
         resizeMode: 'contain',
     },
+    label: {
+        fontSize: 12,
+        marginTop: 6,
+        textAlign: 'center',
+    },
     day:{
-        fontSize: 20,
+        fontSize: 18,
+        marginRight: 8,
     },    
     date: {
-        fontSize: 20,
+        fontSize: 16,
     },
     temperature: {
         width: 60,
         textAlign: 'right',
+        fontSize: 18,
+        fontWeight: 'bold',
     },
-
 });
 
 export { s };

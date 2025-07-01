@@ -39,10 +39,11 @@ export function Forecast({ }) {
             {params.time.map((time, index) => {
                     const code = params.weathercode[index];
                     const image = getWeatherInterpretation(code).image;
+                    const text = getWeatherInterpretation(code).label;
                     const date = new Date(time);
                     const day = DAYS [date.getDay()];
                     const temperature = params.temperature_2m_max[index];
-                    return <ForecastListItem key={time} day={day} image={image} date={dateToDDMM(date)} temperature={temperature.toFixed(0)} />
+                    return <ForecastListItem key={time} day={day} image={image} label={text} date={dateToDDMM(date)} temperature={temperature.toFixed(0)} />
                 })}
         </View>
     )
