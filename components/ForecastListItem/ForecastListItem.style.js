@@ -34,7 +34,7 @@ const s = StyleSheet.create({
     temperature: {
         width: 60,
         textAlign: 'right',
-        fontSize: 18,
+        fontSize: 20,
         fontWeight: 'bold',
     },
 });

@@ -2,13 +2,13 @@ import { Container } from "../../components/Container/Container";
 import { Txt } from "../../components/txt/txt";
 
 import { useNavigation, useRoute } from "@react-navigation/native";
-import { TouchableOpacity, View } from "react-native";
 
 import { s } from "./Forecast.style";
 
 import { ForecastListItem } from "../../components/ForecastListItem/ForecastListItem";
 import { getWeatherInterpretation } from "../../services/meteo-service";
 
+import { ScrollView, TouchableOpacity, View } from "react-native";
 import { dateToDDMM, DAYS } from "../../services/date-service";
 
 
@@ -35,7 +35,7 @@ export function Forecast({ }) {
     )
 
     const forecastList = (
-        <View style={s.forecastList}>
+        <ScrollView style={s.forecastList}>
             {params.time.map((time, index) => {
                     const code = params.weathercode[index];
                     const image = getWeatherInterpretation(code).image;
@@ -45,7 +45,7 @@ export function Forecast({ }) {
                     const temperature = params.temperature_2m_max[index];
                     return <ForecastListItem key={time} day={day} image={image} label={text} date={dateToDDMM(date)} temperature={temperature.toFixed(0)} />
                 })}
-        </View>
+        </ScrollView>
     )
     return (
         <Container>

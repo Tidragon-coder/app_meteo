@@ -33,17 +33,23 @@ export function Home({ }) {
     }
   }, [coords]);
 
-  async function getUserCoords() {
-    let { status } = await requestForegroundPermissionsAsync()
+async function getUserCoords() {
+  try {
+    const { status } = await requestForegroundPermissionsAsync();
 
     if (status === 'granted') {
-      const location = await getCurrentPositionAsync()
-
-      setCoords({ lat: location.coords.latitude, lng: location.coords.longitude })
+      const location = await getCurrentPositionAsync();
+      setCoords({ lat: location.coords.latitude, lng: location.coords.longitude });
     } else {
-      setCoords({ lat: "48.85", lng: "2.35" })
+      // Permission refusée
+      setCoords({ lat: 48.85, lng: 2.35 }); // coordonnées par défaut
     }
+  } catch (error) {
+    // En cas d'erreur (par exemple si getCurrentPositionAsync échoue)
+    console.error("Erreur de localisation :", error);
+    setCoords({ lat: 48.85, lng: 2.35 }); // fallback
   }
+}
 
   async function fetchWeather(coordinates) {
     const weatherResponse =
